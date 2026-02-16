@@ -1,0 +1,10 @@
+<h2>Your Cart</h2>
+
+{% for product in products %}
+<p>
+{{ product.name }} - ₹{{ product.price }}
+Quantity: {{ cart[product.id|string] }}
+</p>
+{% endfor %}
+
+<a href="/checkout">Checkout</a>

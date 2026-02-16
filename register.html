@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right,#4facfe,#00f2fe);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.container{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    width:90%;
+    max-width:350px;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+button{
+    width:100%;
+    padding:10px;
+    background:#4facfe;
+    color:white;
+    border:none;
+}
+.message{
+    text-align:center;
+    margin-bottom:10px;
+}
+</style>
+
+<script>
+function togglePassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+<h2>Register</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="message">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+<form action="/register_user" method="POST">
+<input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" id="password" placeholder="Password" required>   
+<input type="checkbox" onclick="togglePassword()"> Show Password
+<button type="submit">Register</button>
+</form>
+
+<p style="text-align:center;">
+Already have account? <a href="/">Login</a>
+</p>
+
+</div>
+</body>
+</html>
